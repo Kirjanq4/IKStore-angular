@@ -1,0 +1,35 @@
+.wrapper {
+  padding: 1rem 0;
+}
+
+.image-container {
+  background-image: url(../../assets/images/bg-img.jpg);
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 1rem;
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.item {
+  background-color: lightgray;
+  width: 200px;
+  height: 300px;
+  border: 1px solid black;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.item img {
+  width: 150px;
+  height: 150px;
+}
+
+button {
+  padding: 0.5rem 2rem;
+}

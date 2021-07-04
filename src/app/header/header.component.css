@@ -1,0 +1,22 @@
+.container {
+  max-width: 1200px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 36px;
+}
+
+.shop-icon {
+  display: inline-block;
+  margin-left: 3rem;
+  font-size: 30px;
+  color: white;
+  justify-content: spa;
+}
