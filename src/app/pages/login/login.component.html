@@ -9,6 +9,8 @@
       id="defaultLoginFormEmail"
       class="form-control mb-4"
       placeholder="Login"
+      name="login"
+      [(ngModel)]="login"
     />
 
     <!-- Password -->
@@ -17,6 +19,8 @@
       id="defaultLoginFormPassword"
       class="form-control mb-4"
       placeholder="Password"
+      name="password"
+      [(ngModel)]="password"
     />
 
     <div class="d-flex justify-content-around">
@@ -26,7 +30,7 @@
       </div>
 
       <!-- Sign in button -->
-      <button block="true" class="my-4" type="submit">Sign in</button>
+      <button block="true" class="my-4" type="submit" (click)="getLogin()">Sign in</button>
 
       <!-- Register -->
       <p>

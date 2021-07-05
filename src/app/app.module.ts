@@ -11,10 +11,13 @@ import { FooterComponent } from './footer/footer.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, MainComponent, FooterComponent, AdminComponent, LoginComponent, RegisterComponent],
-  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule, NgbModule],
+  declarations: [AppComponent, HeaderComponent, MainComponent, FooterComponent, AdminComponent, LoginComponent, RegisterComponent, ProductListComponent],
+  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule, NgbModule, HttpClientModule, FormsModule],
   providers: [Title],
   bootstrap: [AppComponent],
 })
