@@ -1,38 +1,15 @@
 <header class="p-3 bg-dark text-white">
   <div class="container">
-    <div
-      class="
+    <div class="
         d-flex
         flex-wrap
         align-items-center
-        justify-content-center justify-content-lg-between
-      "
+        justify-content-between
+     "
     >
-      <span class="logo mr-4"><a href="#">IK Store</a></span>
-      <ul
-        class="
-          nav
-          col-12 col-lg-auto
-          ml-3
-          me-lg-auto
-          mb-2
-          justify-content-center
-          mb-md-0
-        "
-      >
-        <li><a href="#" class="nav-link px-2 text-white">Home</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Shop</a></li>
+      <span class="logo mr-4"><a href="#">IK Store</a>
+        <a class="shop-icon"><fa-icon [icon]="faShoppingCart"></fa-icon> </a></span>
 
-        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-        <li>
-          <a
-            [routerLink]="['/admin']"
-            routerLinkActive="active"
-            class="nav-link px-2 text-white"
-            >My Profile</a
-          >
-        </li>
-      </ul>
       <div class="text-end ml-4">
         <button
           [routerLink]="['/login']"
@@ -51,8 +28,9 @@
           Register
         </button>
       </div>
-      <a class="shop-icon"><fa-icon [icon]="faShoppingCart"></fa-icon> </a>
+
     </div>
+
     <div class="d-flex mt-2 justify-content-center justify-content-lg-between">
       <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
         <button
@@ -69,14 +47,7 @@
           <button ngbDropdownItem>Furniture</button>
         </div>
       </div>
-      <form class="w-50">
-        <input
-          type="search"
-          class="form-control form-control-dark"
-          placeholder="Search..."
-          aria-label="Search"
-        />
-      </form>
+
     </div>
   </div>
 </header>
