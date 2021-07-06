@@ -1,42 +1,69 @@
 <!-- Default form login -->
+<div style="height: 75vh">
 <div class="container">
-  <form class="text-center border border-light p-5">
+  <form class="text-center border border-light p-5" #loginForm="ngForm">
+
     <p class="h4 mb-4">Login</p>
 
-    <!-- Email -->
+    <span style="color: red" *ngIf="message==='Wrong username or password'&&timer">{{message}}</span>
+
+    <div style="text-align: left; padding: 0" *ngIf="username.invalid && (username.dirty || username.touched)"
+         class="alert">
+
+      <div *ngIf="username.errors?.required">
+        <small style="color: red">Username is required.</small>
+      </div>
+      <div *ngIf="username.errors?.minlength">
+        <small style="color: red">Username must be at least 4 characters long.</small>
+      </div>
+
+    </div>
     <input
       type="text"
+      required minlength="4"
       id="defaultLoginFormEmail"
-      class="form-control mb-4"
+      class="form-control"
       placeholder="Login"
       name="login"
       [(ngModel)]="login"
+      #username="ngModel"
     />
+    <br>
+    <br>
 
+    <div style="text-align: left; padding: 0" *ngIf="pass.invalid && (pass.dirty || pass.touched)"
+         class="alert">
+
+      <div *ngIf="pass.errors?.required">
+        <small style="color: red">Password is required.</small>
+      </div>
+      <div *ngIf="pass.errors?.minlength">
+        <small style="color: red">Password must be at least 4 characters long.</small>
+      </div>
+
+    </div>
     <!-- Password -->
     <input
       type="password"
+      required minlength="4"
       id="defaultLoginFormPassword"
-      class="form-control mb-4"
+      class="form-control mb-2"
       placeholder="Password"
       name="password"
       [(ngModel)]="password"
+      #pass="ngModel"
     />
 
-    <div class="d-flex justify-content-around">
-      <div>
-        <!-- Forgot password -->
-        <a href="">Forgot password?</a>
-      </div>
 
+
+    <div class="d-flex justify-content-center">
       <!-- Sign in button -->
-      <button class="my-4" type="button" (click)="getLogin()">Sign in</button>
-
-      <!-- Register -->
-      <p>
-        Not a member?
-        <a href="">Register</a>
-      </p>
+      <button  class="my-4" type="button" (click)="getLogin(loginForm); setTimer()">Sign in</button>
     </div>
+    <p>
+      Not a member?
+      <a href="">Register</a>
+    </p>
   </form>
+</div>
 </div>
