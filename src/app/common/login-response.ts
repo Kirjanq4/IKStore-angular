@@ -4,4 +4,10 @@ export class LoginResponse {
 
   admin: boolean;
 
+  authToken: string;
+
+  username: string;
+
+  userId: number;
+
 }

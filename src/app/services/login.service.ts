@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {LoginResponse} from '../common/login-response';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +9,40 @@ import {LoginResponse} from '../common/login-response';
 export class LoginService {
 
   private baseUrl = 'http://localhost:8080/auth';
+  private logoutUrl = 'http://localhost:8080/logout';
+
+  private headers;
+
+  _authToken: string;
+
+  authentication: Subject<string> = new BehaviorSubject<string>('');
 
   constructor(private httpClient: HttpClient) { }
 
 
-  getAuthentication (username: string, password: string) {
+  public getAuthenticationToken (request) {
 
-    const headers = new HttpHeaders({Authorization: 'Basic ' +btoa(username+":"+password)});
-   return this.httpClient.get<LoginResponse>(this.baseUrl, {headers, responseType: 'json'})
+   return this.httpClient.post<LoginResponse>(this.baseUrl, request, { responseType: 'json'});
 
   }
 
+  logout() {
+    this.setToken(null);
+    this.checkAuthentication();
+    return this.httpClient.get(this.logoutUrl);
+  }
 
+ getToken(): string {
+    return this._authToken;
+  }
+
+  setToken(value: string) {
+    this._authToken = value;
+    //save to session
+  }
+
+  checkAuthentication () {
+
+    this.authentication.next(this.getToken());
+  }
 }
