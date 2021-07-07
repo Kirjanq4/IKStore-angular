@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../../services/login.service';
 import {Router} from '@angular/router';
+import {AuthRequest} from '../../common/auth-request';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,10 @@ export class LoginComponent implements OnInit {
 
   timer: boolean;
 
+  authRequest = new AuthRequest();
+
+  authToken: string;
+
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
@@ -31,18 +36,31 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    let response = this.loginService.getAuthentication(this.login, this.password);
+    this.authRequest.login = this.login;
+    this.authRequest.password = this.password;
+
+    let response = this.loginService.getAuthenticationToken(this.authRequest);
+
     response.subscribe(data=>{
       this.message = data.message;
       this.isAdmin = data.admin;
+      this.authToken = data.authToken;
+
+      if(data.message === "Wrong username or password"){
+        this.message = data.message;
+        return;
+      }
+
+      this.loginService.setToken(this.authToken);
+
+      this.loginService.checkAuthentication();
+
       if(this.isAdmin){
         this.router.navigate(["/admin"])
       }
       else {
         this.router.navigate(["/products"])
       }
-    },()=>{
-      this.message = "Wrong username or password"
     })
 
   }
@@ -60,10 +78,7 @@ export class LoginComponent implements OnInit {
     form.controls.login.touched = true;
     form.controls.password.touched = true;
 
-    if(this.login === undefined || this.login.length<4){
-      return 'invalid';
-    }
-    if(this.password === undefined || this.password.length<4){
+    if(!form.valid){
       return 'invalid';
     }
   }
