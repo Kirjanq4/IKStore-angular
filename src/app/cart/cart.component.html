@@ -4,7 +4,10 @@
     <div class="item-container text-center">
       <span class="item">{{ item.name }}</span>
       <span class="item">${{ item.price }}</span>
+      <button class="btn btn-danger" (click)="deleteItem(item)">Remove</button>
     </div>
   </div>
-  <button class="order-btn btn btn-warning">Place order</button>
+  <button [routerLink]="['/purchase']" class="order-btn btn btn-warning">
+    Place order
+  </button>
 </div>

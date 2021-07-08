@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
-import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,12 +9,14 @@ import { OrderService } from '../services/order.service';
 export class CartComponent implements OnInit {
   items = this.cartService.getItems();
 
-  constructor(
-    private cartService: CartService,
-    private orderService: OrderService
-  ) {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {}
 
   saveOrder() {}
+
+  deleteItem(item) {
+    let index = this.items.indexOf(item);
+    this.items.splice(index, 1);
+  }
 }

@@ -4,8 +4,10 @@
       <span class="logo mr-4"
         ><a href="" [routerLink]="['/']">IK Store</a>
         <a [routerLink]="['/cart']" class="shop-icon"
-          ><fa-icon [icon]="faShoppingCart"></fa-icon> </a
-      ></span>
+          ><fa-icon [icon]="faShoppingCart"></fa-icon>
+          <span class="cart-items">{{ items }}</span>
+        </a></span
+      >
 
       <div *ngIf="!authenticated; else templateName">
         <div class="text-end ml-4">

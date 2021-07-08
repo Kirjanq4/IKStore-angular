@@ -20,3 +20,14 @@ a {
   color: white;
   justify-content: spa;
 }
+
+.cart-items {
+  display: inline-block;
+  background-color: red;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  font-size: 12px;
+  position: absolute;
+  text-align: center;
+}

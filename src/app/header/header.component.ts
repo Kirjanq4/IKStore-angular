@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import {LoginService} from '../services/login.service';
+import { CartService } from '../services/cart.service';
+import { LoginService } from '../services/login.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,22 +14,31 @@ export class HeaderComponent implements OnInit {
 
   token: string;
 
-  constructor(private authService: LoginService) {}
+  items: number;
+
+  constructor(
+    private authService: LoginService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
-
-    this.authService.authentication.subscribe(data=>{
+    this.authService.authentication.subscribe((data) => {
       this.token = data;
       this.authenticated = !!this.token;
-      console.log('VALUE '+data)
-    })
+      console.log('VALUE ' + data);
+    });
+  }
 
-    }
+  ngDoCheck() {
+    this.getCartItems();
+  }
 
-    logout () {
-      this.authService.logout();
+  logout() {
+    this.authService.logout();
+  }
 
-    }
-
-
+  getCartItems() {
+    this.items = this.cartService.getItems().length;
+    return this.items;
+  }
 }
