@@ -11,7 +11,9 @@ import {LoginService} from './login.service';
 })
 export class ProductService {
 
-  private productsUrl = 'http://localhost:8080/api/products';
+  private allProductsUrl = 'http://localhost:8080/api/products';
+
+  private productsOfCategoryBase = 'http://localhost:8080/api/products'
 
   constructor(private http: HttpClient, private authService: LoginService) {
 
@@ -20,7 +22,15 @@ export class ProductService {
   public findAll(): Observable<Product[]> {
 
     const headers = new HttpHeaders().set("Authorization", "Bearer "+this.authService.getToken())
-    return this.http.get<Product[]>(this.productsUrl, {headers, responseType:'json'});
+    return this.http.get<Product[]>(this.allProductsUrl, {headers, responseType:'json'});
+  }
+
+  public findProductsInCategory (categoryId): Observable<Product[]> {
+
+    const headers = new HttpHeaders().set("Authorization", "Bearer "+this.authService.getToken());
+    const url = `${this.productsOfCategoryBase}/${categoryId}`;
+    return this.http.get<Product[]>(url, {headers, responseType:'json'});
+
   }
 
 

@@ -1,21 +1,44 @@
-<div class="jumbotron mb-0">
-  <h2 class="text-center mb-3">Dashboard</h2>
-  <div>
-    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-1">
-      <ngb-panel title="Add new category">
-        <ng-template ngbPanelContent>
-          <!-- Default form login -->
-          <form class="text-center border border-light p-5">
-            <input
-              type="text"
-              id="categoryName"
-              class="form-control mb-4"
-              placeholder="E-mail"
-            />
-            <button class="my-4" type="submit">Submit</button>
-          </form>
-        </ng-template>
-      </ngb-panel></ngb-accordion
-    >
+<div class="row" style="margin-top: 2em;">
+  <div class="col-10"></div>
+  <div class="col-2 mb-3">
+    <form method="post">
+      <button type="button" class="btn btn-success">Create new Category</button>
+    </form>
   </div>
 </div>
+<div *ngFor="let category of getAllCategories()">
+  <div class="card" style="margin-bottom: 2em;">
+
+    <div class="card-header">
+      <h4><a>{{category.name}}</a></h4>
+
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let product of category.products">
+          <td scope="row"><h5>{{product.id}}</h5></td>
+          <td scope="row">{{product.name}}</td>
+          <td scope="row">{{product.description}}</td>
+          <td scope="row"> {{product.price}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <form style="margin-top: 1.5em;" method="post">
+        <button type="button" class="btn btn-primary" >Add New Product</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+

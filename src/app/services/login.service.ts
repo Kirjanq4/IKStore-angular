@@ -9,13 +9,10 @@ import {BehaviorSubject, Subject} from 'rxjs';
 export class LoginService {
 
   private baseUrl = 'http://localhost:8080/auth';
+
   private logoutUrl = 'http://localhost:8080/logout';
 
-  private headers;
-
-  _authToken: string;
-
-  authentication: Subject<string> = new BehaviorSubject<string>('');
+  authentication: Subject<string> = new BehaviorSubject<string>(this.getToken());
 
   constructor(private httpClient: HttpClient) { }
 
@@ -27,22 +24,20 @@ export class LoginService {
   }
 
   logout() {
-    this.setToken(null);
-    this.checkAuthentication();
-    return this.httpClient.get(this.logoutUrl);
+    localStorage.removeItem('token')
+    this.setToken('');
+    this.httpClient.get(this.logoutUrl);
   }
 
  getToken(): string {
-    return this._authToken;
+    return localStorage.getItem('token');
   }
 
   setToken(value: string) {
-    this._authToken = value;
+    localStorage.setItem('token',value);
+    this.authentication.next(this.getToken());
     //save to session
   }
 
-  checkAuthentication () {
 
-    this.authentication.next(this.getToken());
-  }
 }

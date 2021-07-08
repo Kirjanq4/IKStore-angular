@@ -53,8 +53,6 @@ export class LoginComponent implements OnInit {
 
       this.loginService.setToken(this.authToken);
 
-      this.loginService.checkAuthentication();
-
       if(this.isAdmin){
         this.router.navigate(["/admin"])
       }
