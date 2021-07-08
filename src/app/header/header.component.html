@@ -7,7 +7,7 @@
         justify-content-between
      "
     >
-      <span class="logo mr-4"><a href="#">IK Store</a>
+      <span class="logo mr-4"><a href="" [routerLink]="['/']">IK Store</a>
         <a class="shop-icon"><fa-icon [icon]="faShoppingCart"></fa-icon> </a></span>
 
       <div *ngIf="!authenticated; else templateName">

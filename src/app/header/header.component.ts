@@ -18,22 +18,15 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.authService.authentication.subscribe(data=>{
-
-        this.token = data;
-        if(this.token){
-          this.authenticated = true;
-        }
+      this.token = data;
+      this.authenticated = !!this.token;
+      console.log('VALUE '+data)
     })
-    this.authService.checkAuthentication();
 
     }
 
     logout () {
       this.authService.logout();
-      if(!this.token){
-        this.authenticated = false;
-      }
-
 
     }
 
