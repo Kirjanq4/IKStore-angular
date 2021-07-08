@@ -1,0 +1,10 @@
+<div class="jumbotron mb-0 text-center">
+  <h3>Cart</h3>
+  <div *ngFor="let item of items">
+    <div class="item-container text-center">
+      <span class="item">{{ item.name }}</span>
+      <span class="item">${{ item.price }}</span>
+    </div>
+  </div>
+  <button class="order-btn btn btn-warning">Place order</button>
+</div>

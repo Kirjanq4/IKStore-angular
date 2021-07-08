@@ -1,34 +1,31 @@
 <header class="p-3 bg-dark text-white">
   <div class="container">
-    <div class="
-        d-flex
-        flex-wrap
-        align-items-center
-        justify-content-between
-     "
-    >
-      <span class="logo mr-4"><a href="" [routerLink]="['/']">IK Store</a>
-        <a class="shop-icon"><fa-icon [icon]="faShoppingCart"></fa-icon> </a></span>
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+      <span class="logo mr-4"
+        ><a href="" [routerLink]="['/']">IK Store</a>
+        <a [routerLink]="['/cart']" class="shop-icon"
+          ><fa-icon [icon]="faShoppingCart"></fa-icon> </a
+      ></span>
 
       <div *ngIf="!authenticated; else templateName">
-      <div class="text-end ml-4">
-        <button
-          [routerLink]="['/login']"
-          routerLinkActive="active"
-          type="button"
-          class="btn btn-outline-light mr-2"
-        >
-          Login
-        </button>
-        <button
-          [routerLink]="['/register']"
-          routerLinkActive="active"
-          type="button"
-          class="btn btn-warning"
-        >
-          Register
-        </button>
-      </div>
+        <div class="text-end ml-4">
+          <button
+            [routerLink]="['/login']"
+            routerLinkActive="active"
+            type="button"
+            class="btn btn-outline-light mr-2"
+          >
+            Login
+          </button>
+          <button
+            [routerLink]="['/register']"
+            routerLinkActive="active"
+            type="button"
+            class="btn btn-warning"
+          >
+            Register
+          </button>
+        </div>
       </div>
       <ng-template #templateName>
         <button
@@ -43,23 +40,10 @@
       </ng-template>
     </div>
 
-    <div class="d-flex mt-2 justify-content-center justify-content-lg-between">
-      <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-        <button
-          class="btn btn-secondary mr-2"
-          id="dropdownManual"
-          ngbDropdownAnchor
-          (focus)="myDrop.open()"
-        >
-          All Categories
-        </button>
-        <div ngbDropdownMenu aria-labelledby="dropdownManual">
-          <button ngbDropdownItem>Books</button>
-          <button ngbDropdownItem>Electronics</button>
-          <button ngbDropdownItem>Furniture</button>
-        </div>
-      </div>
-
+    <div class="text-center">
+      <button [routerLink]="['/products']" class="btn btn-secondary">
+        Show Products
+      </button>
     </div>
   </div>
 </header>

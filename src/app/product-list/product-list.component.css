@@ -1,0 +1,47 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.main {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+
+.product-item {
+  position: relative;
+  border: 2px solid black;
+  text-align: center;
+  width: 15rem;
+  height: 13rem;
+  padding: 1rem;
+  margin: 0.5rem;
+}
+
+.product-info {
+  height: 7rem;
+}
+
+.menu {
+  padding: 1rem;
+}
+
+.menu-btn {
+  width: 10rem;
+}
+.search {
+  padding: 1rem;
+  text-align: center;
+}
+
+.search-bar {
+  width: 25rem;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem;
+  text-align: start;
+  outline: none;
+}

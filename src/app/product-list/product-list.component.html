@@ -1,1 +1,37 @@
-<p>product-list works!</p>
+<nav class="menu navbar navbar-dark bg-dark">
+  <button class="menu-btn btn-light" (click)="listAllProducts()">All</button>
+  <button class="menu-btn btn-light" (click)="listAllBooks()">Books</button>
+  <button class="menu-btn btn-light" (click)="listAllElectronics()">
+    Electronics
+  </button>
+  <button class="menu-btn btn-light" (click)="listAllFurniture()">
+    Furniture
+  </button>
+</nav>
+<div class="search bg-dark">
+  <input
+    class="search-bar mr-sm-2 search"
+    type="text"
+    placeholder="Search"
+    [(ngModel)]="searchText"
+    autocomplete="off"
+  />
+</div>
+<div class="main jumbotron">
+  <div *ngFor="let product of products | filter: searchText">
+    <div class="product-item">
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <div>
+          <p>{{ product.description }}</p>
+        </div>
+      </div>
+      <div>
+        <h6>${{ product.price }}</h6>
+      </div>
+      <div>
+        <button (click)="addToCart(product)">Add to cart</button>
+      </div>
+    </div>
+  </div>
+</div>

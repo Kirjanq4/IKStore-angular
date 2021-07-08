@@ -1,0 +1,16 @@
+.item-container {
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 2px;
+  width: 50%;
+  margin: 1rem auto;
+}
+
+.item {
+  padding: 0.5rem;
+  margin-right: 2rem;
+}
+
+.order-btn {
+  width: 50%;
+}

@@ -11,13 +11,33 @@ import { FooterComponent } from './footer/footer.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { ProductListComponent } from './product-list/product-list.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, MainComponent, FooterComponent, AdminComponent, LoginComponent, RegisterComponent, ProductListComponent],
-  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule, NgbModule, HttpClientModule, FormsModule],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    MainComponent,
+    FooterComponent,
+    AdminComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProductListComponent,
+    CartComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FontAwesomeModule,
+    NgbModule,
+    HttpClientModule,
+    FormsModule,
+    Ng2SearchPipeModule,
+  ],
   providers: [Title],
   bootstrap: [AppComponent],
 })
