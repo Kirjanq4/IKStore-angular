@@ -35,5 +35,13 @@ export class AdminComponent implements OnInit {
 
   }
 
+  addProductToCategory (categoryId, product) {
+
+    this.categories.filter((category)=>category.id === categoryId).forEach((cat)=>{
+      cat.products.push(product)
+    })
+
+  }
+
 
 }

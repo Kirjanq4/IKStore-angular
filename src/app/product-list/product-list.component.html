@@ -1,22 +1,30 @@
-<nav class="menu navbar navbar-dark bg-dark">
-  <button class="menu-btn btn-light" (click)="listAllProducts()">All</button>
-  <button class="menu-btn btn-light" (click)="listAllBooks()">Books</button>
-  <button class="menu-btn btn-light" (click)="listAllElectronics()">
-    Electronics
-  </button>
-  <button class="menu-btn btn-light" (click)="listAllFurniture()">
-    Furniture
-  </button>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" [ngClass]="selection==='all'? 'active' : ''" style="cursor: pointer" (click)="listAllProducts()">All</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer" [ngClass]="selection==='books'? 'active' : ''" (click)="listAllBooks()">Books</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer" [ngClass]="selection==='electronics'? 'active' : ''" (click)="listAllElectronics()">Electronics</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer" [ngClass]="selection==='furniture'? 'active' : ''" (click)="listAllFurniture()" tabindex="-1" >Furniture</a>
+        </li>
+      </ul>
+        <input class="form-control" style="width: 30%" type="text"
+               placeholder="Search"
+               [(ngModel)]="searchText" autocomplete="off">
+
+    </div>
+  </div>
 </nav>
-<div class="search bg-dark">
-  <input
-    class="search-bar mr-sm-2 search"
-    type="text"
-    placeholder="Search"
-    [(ngModel)]="searchText"
-    autocomplete="off"
-  />
-</div>
+
 <div class="main jumbotron">
   <div *ngFor="let product of products | filter: searchText">
     <div class="product-item">
@@ -29,7 +37,7 @@
       <div>
         <h6>${{ product.price }}</h6>
       </div>
-      <div>
+      <div *ngIf="isUser">
         <button (click)="addToCart(product)">Add to cart</button>
       </div>
     </div>
