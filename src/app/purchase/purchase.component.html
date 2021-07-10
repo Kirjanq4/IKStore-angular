@@ -1,4 +1,28 @@
-<div>Total Price: ${{ totalPrice }}</div>
-<div>Quantity: {{ this.items.length }} psc</div>
-<label for="shipping">Shipping adress</label>
-<input type="text" name="shipping" />
+<div class="jumbotron mb-0">
+  <div class="form container">
+    <div class="field">Total Price: ${{ totalPrice }}</div>
+    <div class="field">
+      Quantity:
+      {{ this.items.length }} psc
+    </div>
+    <div class="field">
+      <label for="address">Shipping address: </label>
+      <br />
+      <input
+        class="input"
+        type="text"
+        name="address"
+        id="address"
+        [(ngModel)]="address"
+      />
+    </div>
+
+    <button
+      class="purchase-btn btn btn-warning"
+      [routerLink]="['/products']"
+      (click)="sendPurchase()"
+    >
+      Purchase
+    </button>
+  </div>
+</div>

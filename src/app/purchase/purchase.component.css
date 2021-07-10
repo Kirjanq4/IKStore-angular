@@ -1,0 +1,11 @@
+.field {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.input {
+  border: none;
+  outline: none;
+  width: 50%;
+}

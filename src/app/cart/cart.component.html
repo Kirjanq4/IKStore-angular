@@ -2,9 +2,15 @@
   <h3>Cart</h3>
   <div *ngFor="let item of items">
     <div class="item-container text-center">
-      <span class="item">{{ item.name }}</span>
-      <span class="item">${{ item.price }}</span>
-      <button class="btn btn-danger" (click)="deleteItem(item)">Remove</button>
+      <span class="item"
+        ><h4>{{ item.name }}</h4></span
+      >
+      <span class="item"
+        ><h5>${{ item.price }}</h5></span
+      >
+      <button class="remove-btn btn btn-danger" (click)="deleteItem(item)">
+        Remove
+      </button>
     </div>
   </div>
   <button [routerLink]="['/purchase']" class="order-btn btn btn-warning">

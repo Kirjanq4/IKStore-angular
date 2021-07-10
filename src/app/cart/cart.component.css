@@ -4,6 +4,7 @@
   padding: 1rem;
   border: 1px solid black;
   border-radius: 2px;
+  width: 50%;
 
   margin: 1rem auto;
 }
@@ -13,6 +14,30 @@
   margin-right: 2rem;
 }
 
+.remove-btn {
+  height: 3rem;
+}
+
 .order-btn {
-  width: 100%;
+  width: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  .item-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .item {
+    margin: 0;
+  }
+  .remove-btn {
+    width: 70%;
+    height: 3rem;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .item-container {
+    width: 70%;
+  }
 }
