@@ -17,7 +17,7 @@
       />
     </div>
 
-    <button
+    <button [disabled]="items.length===0"
       class="purchase-btn btn btn-warning"
       [routerLink]="['/products']"
       (click)="sendPurchase()"

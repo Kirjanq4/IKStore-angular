@@ -1,19 +1,28 @@
 <div class="jumbotron mb-0 text-center">
   <h3>Cart</h3>
   <div *ngFor="let item of items">
-    <div class="item-container text-center">
+    <div class="item-container ">
+      <div class="row">
+        <div class="col-5">
       <span class="item"
         ><h4>{{ item.name }}</h4></span
       >
+        </div>
+        <div class="col-3">
       <span class="item"
         ><h5>${{ item.price }}</h5></span
       >
-      <button class="remove-btn btn btn-danger" (click)="deleteItem(item)">
-        Remove
-      </button>
+        </div>
+        <div class="col-4">
+          <button style="margin-top: 15px" class="remove-btn btn btn-danger" (click)="deleteItem(item)">
+            Remove
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
-  <button [routerLink]="['/purchase']" class="order-btn btn btn-warning">
+  <button [disabled]="items.length===0" [routerLink]="['/purchase']" class="order-btn btn btn-warning">
     Place order
   </button>
 </div>

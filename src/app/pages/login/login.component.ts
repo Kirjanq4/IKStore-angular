@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
 
   authToken: string;
 
+  userName: string;
+
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
@@ -45,13 +47,14 @@ export class LoginComponent implements OnInit {
       this.message = data.message;
       this.isAdmin = data.admin;
       this.authToken = data.authToken;
+      this.userName = data.username;
 
       if(data.message === "Wrong username or password"){
         this.message = data.message;
         return;
       }
 
-      this.loginService.setToken(this.authToken);
+      this.loginService.setToken(this.authToken, this.userName);
 
       if(this.isAdmin){
         this.router.navigate(["/admin"])

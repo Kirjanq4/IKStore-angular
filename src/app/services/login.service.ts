@@ -25,7 +25,8 @@ export class LoginService {
 
   logout() {
     localStorage.removeItem('token')
-    this.setToken('');
+    localStorage.removeItem('username')
+    this.setToken('','');
     this.httpClient.get(this.logoutUrl);
   }
 
@@ -33,8 +34,15 @@ export class LoginService {
     return localStorage.getItem('token');
   }
 
-  setToken(value: string) {
+  getUserName(): string {
+    return localStorage.getItem('username')
+  }
+
+
+
+  setToken(value: string, username:string) {
     localStorage.setItem('token',value);
+    localStorage.setItem('username', username);
     this.authentication.next(this.getToken());
     //save to session
   }

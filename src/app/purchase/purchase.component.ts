@@ -5,6 +5,7 @@ import { Purchase } from '../common/purchase';
 import { PurchaseService } from '../services/purchase.service';
 import { OrderItem } from '../common/order-item';
 import { PurchaseResponse } from '../common/purchase-response';
+import {LoginService} from '../services/login.service';
 
 @Component({
   selector: 'app-purchase',
@@ -12,9 +13,10 @@ import { PurchaseResponse } from '../common/purchase-response';
   styleUrls: ['./purchase.component.css'],
 })
 export class PurchaseComponent implements OnInit {
+
   purchase: Purchase = new Purchase();
 
-  purchaseRespone: PurchaseResponse = new PurchaseResponse();
+  purchaseResponse: PurchaseResponse = new PurchaseResponse();
 
   orderItem: OrderItem = new OrderItem();
 
@@ -22,35 +24,41 @@ export class PurchaseComponent implements OnInit {
 
   items = this.cartService.getItems();
 
-  address: string = '';
+  address: string;
 
   constructor(
     private cartService: CartService,
-    private purchaseService: PurchaseService
+    private purchaseService: PurchaseService,
+
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+
+  }
 
   totalPrice = this.items.reduce((prev, cur) => prev + cur.price, 0);
 
   sendPurchase() {
     this.purchase.totalPrice = this.totalPrice;
-    this.purchase.totalQuantity = this.items.length;
-    this.purchase.deliveryAddress = this.address;
+    this.purchase.totalQty = this.items.length;
+    this.purchase.shippingAddress = this.address;
 
     this.items.map((item) => {
-      let arr = new OrderItem();
-      arr.productId = item.id;
-      arr.quantity = 1;
-      arr.unitPrice = item.price;
+      let arrItem = new OrderItem();
+      arrItem.productId = item.id;
+      arrItem.quantity = 1;
+      arrItem.unitPrice = item.price;
 
-      this.purchase.orderItems.push(arr);
+      this.purchase.orderItems.push(arrItem);
     });
 
     console.log(this.purchase);
-    this.purchaseRespone.message = 'Thank You';
-    alert(this.purchaseRespone.message);
 
-    this.purchaseService.setPurchase(this.purchase);
+    this.purchaseService.setPurchase(this.purchase).subscribe(data=>{
+      this.purchaseResponse = data;
+      alert(this.purchaseResponse.message);
+    });
+    this.cartService.clearCart();
   }
 }

@@ -11,7 +11,7 @@ import {LoginService} from './login.service';
 })
 export class ProductService {
 
-  private allProductsUrl = 'http://localhost:8080/api/products';
+  private baseUrl = 'http://localhost:8080/api/products';
 
   private productsOfCategoryBase = 'http://localhost:8080/api/products'
 
@@ -22,7 +22,7 @@ export class ProductService {
   public findAll(): Observable<Product[]> {
 
     const headers = new HttpHeaders().set("Authorization", "Bearer "+this.authService.getToken())
-    return this.http.get<Product[]>(this.allProductsUrl, {headers, responseType:'json'});
+    return this.http.get<Product[]>(this.baseUrl, {headers, responseType:'json'});
   }
 
   public findProductsInCategory (categoryId): Observable<Product[]> {
@@ -30,6 +30,14 @@ export class ProductService {
     const headers = new HttpHeaders().set("Authorization", "Bearer "+this.authService.getToken());
     const url = `${this.productsOfCategoryBase}/${categoryId}`;
     return this.http.get<Product[]>(url, {headers, responseType:'json'});
+
+  }
+
+  public addProductToCategory (product: Product) {
+
+    const headers = new HttpHeaders().set("Authorization", "Bearer "+this.authService.getToken());
+    return this.http.post<Product>(this.baseUrl,product,{headers, responseType: 'json'})
+
 
   }
 

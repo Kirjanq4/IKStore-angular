@@ -11,9 +11,21 @@ import {Product} from '../../common/product';
 })
 export class AdminComponent implements OnInit {
 
-  private categories: Category[] = [];
+  categories: Category[] = [];
 
-  private productsOfCategory: Product [] = [];
+  private _categoryId: number;
+
+  productModalIsHidden: boolean = true;
+
+  categoryModalIsHidden: boolean = true;
+
+  productName: string;
+
+  productDescription: string;
+
+  categoryName: string;
+
+  price: string;
 
 
   constructor(private categoryService: CategoryService, private productService: ProductService) { }
@@ -35,13 +47,57 @@ export class AdminComponent implements OnInit {
 
   }
 
-  addProductToCategory (categoryId, product) {
+  showProductModal(id) {
 
-    this.categories.filter((category)=>category.id === categoryId).forEach((cat)=>{
-      cat.products.push(product)
+    this.productModalIsHidden = false;
+    this._categoryId = id;
+
+  }
+
+  createNewCategory() {
+    let category = new Category();
+    category.name = this.categoryName;
+    category.products = [];
+    this.categoryService.createNewCategory(category).subscribe(data=>{
+      this.categories.unshift(data);
+      console.log(data);
     })
+  }
+
+  addProductToCategory (categoryId) {
+
+    let product = new Product();
+    let category = new Category();
+    category.id = categoryId;
+    product.category = category;
+    product.name = this.productName;
+    product.description = this.productDescription;
+    product.price = parseFloat(this.price);
+
+    this.productService.addProductToCategory(product).subscribe(data=>{
+      console.log(data);
+
+      this.categories.filter((category)=>category.id === categoryId).forEach((cat)=>{
+          cat.products.push(data);
+      })
+    });
 
   }
 
 
+  hideProductModal() {
+    this.productModalIsHidden = true;
+  }
+
+  showCategoryModal(){
+    this.categoryModalIsHidden = false;
+  }
+
+  hideCategoryModal() {
+    this.categoryModalIsHidden = true;
+  }
+
+  get categoryId(): number {
+    return this._categoryId;
+  }
 }

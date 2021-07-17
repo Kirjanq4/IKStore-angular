@@ -1,8 +1,8 @@
 import {OrderItem} from './order-item';
 
 export class Purchase {
-  deliveryAddress: string;
+  shippingAddress: string;
   totalPrice: number;
-  totalQuantity: number;
+  totalQty: number;
   orderItems: OrderItem [] = []
 }

@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
 
   items: number;
 
+  private _userName:string;
+
   constructor(
     private authService: LoginService,
     private cartService: CartService
@@ -24,6 +26,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.authService.authentication.subscribe((data) => {
       this.token = data;
+      this._userName = this.authService.getUserName();
       this.authenticated = !!this.token;
       console.log('VALUE ' + data);
     });
@@ -40,5 +43,10 @@ export class HeaderComponent implements OnInit {
   getCartItems() {
     this.items = this.cartService.getItems().length;
     return this.items;
+  }
+
+
+  get userName(): string {
+    return this._userName;
   }
 }
