@@ -27,6 +27,9 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.authService.authentication.subscribe((data) => {
       this.isUser = !!data;
+      if(!data){
+        this.cartService.clearCart();
+      }
     });
     this.productService.findAll().subscribe((data) => {
       this.products = data;

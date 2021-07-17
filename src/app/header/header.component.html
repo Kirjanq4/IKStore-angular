@@ -2,9 +2,9 @@
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-between">
       <span class="logo mr-4"
-        ><a href="" [routerLink]="['/']">IK Store</a>
-        <a [routerLink]="['/cart']" class="shop-icon"
-          ><fa-icon [icon]="faShoppingCart"></fa-icon>
+        ><a style="text-decoration: underline" href="" [routerLink]="userName==='admin'?['admin']:['/']">IK Store</a>
+        <a [routerLink]="['/cart']" class="shop-icon">
+          <fa-icon [icon]="faShoppingCart"></fa-icon>
           <span class="cart-items">{{ items }}</span>
         </a></span
       >
@@ -30,6 +30,18 @@
         </div>
       </div>
       <ng-template #templateName>
+
+        <div style="font-weight: bold; font-size: large">
+          Welcome, {{this.userName}}!
+          <a [routerLink]="['profile']">
+          <div style="display: inline-block; position: relative; top: 10px; cursor: pointer" class="_profile">
+            <div class='_head'></div>
+            <div class='_body'></div>
+          </div>
+          </a>
+        </div>
+
+
         <button
           (click)="logout()"
           [routerLink]="['/logout']"

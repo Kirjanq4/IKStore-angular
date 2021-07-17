@@ -2,11 +2,11 @@
   <div class="col-10"></div>
   <div class="col-2 mb-3">
     <form method="post">
-      <button type="button" class="btn btn-success">Create new Category</button>
+      <button (click)="showCategoryModal()" type="button" class="btn btn-success">Create new Category</button>
     </form>
   </div>
 </div>
-<div *ngFor="let category of getAllCategories()">
+<div *ngFor="let category of categories">
   <div class="card" style="margin-bottom: 2em;">
 
     <div class="card-header">
@@ -34,11 +34,89 @@
         </tbody>
       </table>
       <form style="margin-top: 1.5em;" method="post">
-        <button type="button" class="btn btn-primary"  >Add New Product</button>
+        <button type="button" class="btn btn-primary" (click)="showProductModal(category.id)"  >Add New Product</button>
       </form>
     </div>
 
+    <div id="modal" class="modal" [ngClass]="productModalIsHidden? 'hidden': ''" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add new Product</h5>
+          </div>
+          <div class="modal-body">
+            <div class="row justify-content-center">
+              <div class="col-10">
+
+                <form id="sendForm" class="row-g-3" action="" method="post">
+
+                  <div class="col-10 mb-3">
+                    <div><label for="name" class="col-form-label col-form-label-lg">Product name</label></div>
+                    <input class="form-control" name="productName" [(ngModel)]="productName"  id="name"/>
+
+                  </div>
+                  <div class="col-6 mb-2">
+                    <div><label for="date" class="col-form-label col-form-label-lg">Description</label></div>
+                    <textarea maxlength="50" style="resize: none" id="date" name="productDescription" [(ngModel)]="productDescription" class="form-control " >
+                </textarea>
+                  </div>
+                  <div class="col-6 mb-2">
+                    <div><label for="time" class="col-form-label col-form-label-lg">Price</label></div>
+                    <input id="time" class="form-control" name="price" [(ngModel)]="price" type="number"  />
+                  </div>
+                  <br>
+
+                </form>
+                <button style="margin-bottom: 10px" id="submitBtn" (click)="addProductToCategory(this.categoryId)" class="btn btn-success">Add</button>
+              </div>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="close-btn" type="button" class="btn btn-secondary" (click)="hideProductModal()" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal" [ngClass]="categoryModalIsHidden? 'hidden': ''" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add new Category</h5>
+          </div>
+          <div class="modal-body">
+            <div class="row justify-content-center">
+              <div class="col-10">
+
+                <form class="row-g-3" action="" method="post">
+
+                  <div class="col-10 mb-3">
+                    <div><label for="name" class="col-form-label col-form-label-lg">Category name</label></div>
+                    <input class="form-control" name="categoryName" [(ngModel)]="categoryName"  />
+                  <br>
+                  </div>
+                </form>
+                <button style="margin-bottom: 10px" (click)="createNewCategory()" class="btn btn-success">Add</button>
+              </div>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="hideCategoryModal()" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
   </div>
+
+
 </div>
+
+
 
 

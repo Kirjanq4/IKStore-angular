@@ -17,6 +17,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CartComponent } from './cart/cart.component';
 import { PurchaseComponent } from './purchase/purchase.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PurchaseComponent } from './purchase/purchase.component';
     ProductListComponent,
     CartComponent,
     PurchaseComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
