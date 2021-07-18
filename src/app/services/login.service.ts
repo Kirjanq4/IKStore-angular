@@ -26,7 +26,8 @@ export class LoginService {
   logout() {
     localStorage.removeItem('token')
     localStorage.removeItem('username')
-    this.setToken('','');
+    localStorage.removeItem('userId')
+    this.setToken('','','');
     this.httpClient.get(this.logoutUrl);
   }
 
@@ -39,10 +40,14 @@ export class LoginService {
   }
 
 
+  getUserId(): number {
+    return parseInt(localStorage.getItem('userId'));
+  }
 
-  setToken(value: string, username:string) {
+  setToken(value: string, username:string, userId:string) {
     localStorage.setItem('token',value);
     localStorage.setItem('username', username);
+    localStorage.setItem('userId', userId);
     this.authentication.next(this.getToken());
     //save to session
   }

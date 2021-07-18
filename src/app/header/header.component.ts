@@ -18,6 +18,8 @@ export class HeaderComponent implements OnInit {
 
   private _userName:string;
 
+  private _userId: number;
+
   constructor(
     private authService: LoginService,
     private cartService: CartService
@@ -27,6 +29,7 @@ export class HeaderComponent implements OnInit {
     this.authService.authentication.subscribe((data) => {
       this.token = data;
       this._userName = this.authService.getUserName();
+      this._userId = this.authService.getUserId();
       this.authenticated = !!this.token;
       console.log('VALUE ' + data);
     });
@@ -48,5 +51,10 @@ export class HeaderComponent implements OnInit {
 
   get userName(): string {
     return this._userName;
+  }
+
+
+  get userId(): number {
+    return this._userId;
   }
 }

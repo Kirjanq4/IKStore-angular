@@ -21,6 +21,10 @@
   margin: 0.5rem;
 }
 
+.product-item:hover {
+  background-color: #dbdcd9;
+}
+
 .product-info {
   height: 7rem;
 }
