@@ -1,1 +1,26 @@
-<p>profile works!</p>
+
+<h4 style="text-align: center; margin-top:50px; margin-bottom: 20px ">Your orders history:</h4>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Total price</th>
+    <th scope="col">Total qty</th>
+    <th scope="col">Delivery address</th>
+    <th scope="col">Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr style="cursor: pointer" *ngFor="let order of orders">
+    <td scope="row">{{order.id}}</td>
+    <td scope="row">{{order.totalPrice}} $</td>
+    <td scope="row">{{order.totalQuantity}}</td>
+    <td scope="row">{{order.deliveryAddress}}</td>
+    <td scope="row">{{order.dateCreated}}</td>
+
+  </tr>
+  </tbody>
+</table>
+
+<div style="margin-top: 50px; margin-bottom: 50px" *ngIf="orders.length===0"><h4 style="text-align: center">No orders in history yet...</h4></div>
